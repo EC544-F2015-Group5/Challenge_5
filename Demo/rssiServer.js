@@ -124,9 +124,13 @@ XBeeAPI.on("frame_object", function(frame) {
       }
     }
     
+    var result = count[0];
     //Locate the position
-    for(var c=0; c<count.length; c++){
-        Math.max(max, count[c]);
+    for(var c=1; c<count.length; c++){
+        if(count[c]>result){
+          result = count[c];
+          max = c+1;
+        }
     }
     console.log("Area:"+max);
     console.log("Beacon ID: " + frame.data[1] + ", RSSI: " + (frame.data[0]));
