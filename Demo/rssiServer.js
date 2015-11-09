@@ -14,9 +14,9 @@ var sampleDelay = 3000;
 
 // Map for xbee1
 var map1 = new Array();
-map1[0] = new Array(33,34,35,36,37,38,39,40);
-map1[1] = new Array();
-map1[2] = new Array();
+map1[0] = new Array(50,51,52,53,54,55,56,57);
+map1[1] = new Array(33,34,35,36,37,38,39,40);
+map1[2] = new Array(60,61,62,63,64,65,66,67);
 map1[3] = new Array();
 map1[4] = new Array();
 map1[5] = new Array();
@@ -60,7 +60,8 @@ map4[6] = new Array();
 map4[7] = new Array();
 
 //Counting
-var count = new Array();
+var count = new Array(0,0,0,0,0,0,0,0);
+
 
 //Note that with the XBeeAPI parser, the serialport's "data" event will not fire when messages are received!
 portConfig = {
@@ -98,28 +99,28 @@ XBeeAPI.on("frame_object", function(frame) {
     for(var i=0; i<map1.length;i++){
       for(var j=0; j<map1[0].length; j++){
         if(Math.abs(frame.data[0]-map1[i][j])<5){
-        count[i+1]++;
+        count[i]++;
       }
       }
     }
     for(var i=0; i<map2.length;i++){
       for(var j=0; j<map2[0].length; j++){
         if(Math.abs(frame.data[0]-map2[i][j])<5){
-        count[i+1]++;
+        count[i]++;
       }
       }
     }
     for(var i=0; i<map3.length;i++){
       for(var j=0; j<map3[0].length; j++){
         if(Math.abs(frame.data[0]-map3[i][j])<5){
-        count[i+1]++;
+        count[i]++;
       }
       }
     }
     for(var i=0; i<map4.length;i++){
       for(var j=0; j<map4[0].length; j++){
         if(Math.abs(frame.data[0]-map4[i][j])<5){
-        count[i+1]++;
+        count[i]++;
       }
       }
     }
