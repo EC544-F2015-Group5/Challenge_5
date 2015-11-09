@@ -23,13 +23,23 @@
       -webkit-border-radius:50px;
       border-radius:50px;
     }
+    div.Point1 {
+      margin-left: 40px;
+      width:20px;
+      height:20px;
+      background: red;
+      -moz-border-radius:50px;
+      -webkit-border-radius:50px;
+      border-radius:50px;
+    }
 	</style>
 </head>
 <body >
     <div ><h3> The current area:</h3></div>
     <div>
     <div class="Total">
-      <div class="Point"></div>
+      <div id="1" class="Point"></div>
+     <div id="2" class="Point1"></div> 
     </div>
    <ul id="messages"></ul>
     <script src="/socket.io/socket.io.js"></script>
@@ -37,6 +47,15 @@
   var socket = io(); 
   socket.on('action', function(data){
     $('#messages').append($('<li>').text(data));
+    var div = document.getElementById("1");
+    var div1 = document.getElementById("2");
+    if(data=="1"){
+      div.style.display="block";
+      div1.style.display="none";
+    }else if(data=="2"){
+      div.style.display="none";
+      div1.style.display="block";
+    }
   });
 </script>
 </body>
