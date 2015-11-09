@@ -14,10 +14,10 @@ var sampleDelay = 3000;
 
 // Map for xbee1
 var map1 = new Array();
-map1[0] = new Array(50,51,52,53,54,55,56,57);
-map1[1] = new Array(33,34,35,36,37,38,39,40);
-map1[2] = new Array(60,61,62,63,64,65,66,67);
-map1[3] = new Array();
+map1[0] = 30;
+map1[1] = 50;
+map1[2] = 60;
+map1[3] = 72;
 map1[4] = new Array();
 map1[5] = new Array();
 map1[6] = new Array();
@@ -26,10 +26,10 @@ map1[7] = new Array();
 
 //Map for xbee2
 var map2 = new Array();
-map2[0] = new Array(50,51,52,53,54,55,56,57);
-map2[1] = new Array();
-map2[2] = new Array();
-map2[3] = new Array();
+map2[0] = 40;
+map2[1] = 51;
+map2[2] = 63;
+map2[3] = 73;
 map2[4] = new Array();
 map2[5] = new Array();
 map2[6] = new Array();
@@ -38,9 +38,9 @@ map2[7] = new Array();
 
 //Map for xbee3
 var map3 = new Array();
-map3[0] = new Array(1,2,3,4,5,6,7,8);
-map3[1] = new Array();
-map3[2] = new Array();
+map3[0] = 85;
+map3[1] = 78;
+map3[2] = 75;
 map3[3] = new Array();
 map3[4] = new Array();
 map3[5] = new Array();
@@ -50,8 +50,8 @@ map3[7] = new Array();
 
 //Map for xbee4
 var map4 = new Array();
-map4[0] = new Array(1,2,3,4,5,6,7,8);
-map4[1] = new Array();
+map4[0] = 79;
+map4[1] = 70;
 map4[2] = new Array();
 map4[3] = new Array();
 map4[4] = new Array();
@@ -97,29 +97,27 @@ sp.on("open", function () {
 XBeeAPI.on("frame_object", function(frame) {
   if (frame.type == 144){
     for(var i=0; i<map1.length;i++){
-      for(var j=0; j<map1[0].length; j++){
-        if(Math.abs(frame.data[0]-map1[i][j])<5){
+        if(Math.abs(frame.data[0]-map1[i])<5){
         count[i]++;
-      }
       }
     }
     for(var i=0; i<map2.length;i++){
       for(var j=0; j<map2[0].length; j++){
-        if(Math.abs(frame.data[0]-map2[i][j])<5){
+        if(Math.abs(frame.data[0]-map2[i])<5){
         count[i]++;
       }
       }
     }
     for(var i=0; i<map3.length;i++){
       for(var j=0; j<map3[0].length; j++){
-        if(Math.abs(frame.data[0]-map3[i][j])<5){
+        if(Math.abs(frame.data[0]-map3[i])<5){
         count[i]++;
       }
       }
     }
     for(var i=0; i<map4.length;i++){
       for(var j=0; j<map4[0].length; j++){
-        if(Math.abs(frame.data[0]-map4[i][j])<5){
+        if(Math.abs(frame.data[0]-map4[i])<5){
         count[i]++;
       }
       }
