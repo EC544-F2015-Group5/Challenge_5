@@ -11,11 +11,13 @@
 		    position: absolute;
 		    top: 10%;
 		    left: 17%;
-		    width: 80%;
+		    width: 90%;
 		    height: 80%;
-        background-color:rgba(0,255,255,255)
+        background-image:url(m2.png);
+        background-repeat :no-repeat;
 		}
     div.Point {
+      margin-top: 25%;
       width:20px;
       height:20px;
       background: red;
@@ -44,6 +46,7 @@
    <ul id="messages"></ul>
     <script src="/socket.io/socket.io.js"></script>
 <script>
+  
   var socket = io(); 
   socket.on('action', function(data){
     $('#messages').append($('<li>').text(data));

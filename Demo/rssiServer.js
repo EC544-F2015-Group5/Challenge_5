@@ -1,5 +1,7 @@
 var SerialPort = require("serialport");
-var app = require('express')();
+var express = require('express');
+var app = express();
+var path = require('path');
 var xbee_api = require('xbee-api');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -25,20 +27,6 @@ map1[5] = new Array();
 map1[6] = new Array();
 map1[7] = new Array();
 map1[8] = new Array();
-map1[9] = new Array();
-map1[10] = new Array();
-map1[11] = new Array();
-map1[12] = new Array();
-map1[13] = new Array();
-map1[14] = new Array();
-map1[15] = new Array();
-map1[16] = new Array();
-map1[17] = new Array();
-map1[18] = new Array();
-map1[19] = new Array();
-map1[20] = new Array();
-map1[21] = new Array();
-map1[22] = new Array();
 
 
 //Map for xbee2
@@ -52,20 +40,7 @@ map2[5] = new Array();
 map2[6] = new Array();
 map2[7] = new Array();
 map2[8] = new Array();
-map2[9] = new Array();
-map2[10] = new Array();
-map2[11] = new Array();
-map2[12] = new Array();
-map2[13] = new Array();
-map2[14] = new Array();
-map2[15] = new Array();
-map2[16] = new Array();
-map2[17] = new Array();
-map2[18] = new Array();
-map2[19] = new Array();
-map2[20] = new Array();
-map2[21] = new Array();
-map2[22] = new Array();
+
 
 
 //Map for xbee3
@@ -79,20 +54,6 @@ map3[5] = new Array();
 map3[6] = new Array();
 map3[7] = new Array();
 map3[8] = new Array();
-map3[9] = new Array();
-map3[10] = new Array();
-map3[11] = new Array();
-map3[12] = new Array();
-map3[13] = new Array();
-map3[14] = new Array();
-map3[15] = new Array();
-map3[16] = new Array();
-map3[17] = new Array();
-map3[18] = new Array();
-map3[19] = new Array();
-map3[20] = new Array();
-map3[21] = new Array();
-map3[22] = new Array();
 
 
 //Map for xbee4
@@ -106,22 +67,8 @@ map4[5] = new Array();
 map4[6] = new Array();
 map4[7] = new Array();
 map4[8] = new Array();
-map4[9] = new Array();
-map4[10] = new Array();
-map4[11] = new Array();
-map4[12] = new Array();
-map4[13] = new Array();
-map4[14] = new Array();
-map4[15] = new Array();
-map4[16] = new Array();
-map4[17] = new Array();
-map4[18] = new Array();
-map4[19] = new Array();
-map4[20] = new Array();
-map4[21] = new Array();
-map4[22] = new Array();
 
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Note that with the XBeeAPI parser, the serialport's "data" event will not fire when messages are received!
 portConfig = {
@@ -135,6 +82,7 @@ sp = new SerialPort.SerialPort(portName, portConfig);
 app.get('/', function(req, res){
   res.sendfile('1.html');
 });
+
 
 // io.on('connection', function(socket){
 //   console.log("haha");
