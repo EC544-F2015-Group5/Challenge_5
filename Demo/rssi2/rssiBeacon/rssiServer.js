@@ -7,6 +7,7 @@ var KNN = require('ml-knn');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
+var count=0;
 
 var C = xbee_api.constants;
 var XBeeAPI = new xbee_api.XBeeAPI({
@@ -186,12 +187,16 @@ fs.readFile('data.json', function(err, f){
        var knn = new KNN();
       knn.train(trainingSet, predictions);
       
-      var dataset = [[0, 0, 0],
-                     [2, 2, 2]];
+      var dataset = [[]];
+      dataset[0][count] = frame.data[0];
+      count++;
+      console.log(count);
+      if(count==4){
+        var ans = knn.predict(dataset);
+        console.log(ans);
+        count=0;
+      }
                
-var ans = knn.predict(dataset);
-
-console.log(ans);
 });
     //Counting
     // var count = new Array(0,0,0,0,0,0,0,0);
