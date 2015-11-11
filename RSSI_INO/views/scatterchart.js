@@ -1,4 +1,4 @@
-
+var socket = io.connect('/');
 
 var drawGridLines = function(width, height, container){
   // Using for loop to draw multiple horizontal lines
@@ -105,27 +105,38 @@ g.selectAll("scatter-dots")
             .style("fill","green"); */    
 
         //  });
-d3.loadData() 
-      .json('data', 'data.json') 
-      .json('loc', 'loc.json') 
+//d3.loadData() 
+     // .json('data', 'data.json') 
+    //  .json('loc', 'loc.json') 
       
-      .onload(function(data) { 
+     // .onload(function(data) { 
+    //  d3.text("loc.txt", function( data){
+      //var data = [[0,5],[4.6,0],[4.6,4.6],[5,0.48]];
+        //var data = [[{"x":6.5,"y":0.154}],[{"x":26.653,"y":0.032}],[{"x":22.92,"y":0.008}]];
+
+      d3.tsv("loc.tsv", function( data) {
+          for (var j = 0;j<data.length; j++){
            var x2 = d3.scale.linear()
-              .domain(d3.extent(data.loc, function(d) { return d.x; })).nice()
+              .domain(d3.extent(data, function(d) { return d[j][0]; })).nice()
               .range([ 0, width ]);
+          
     
     var y2 = d3.scale.linear()
-            .domain(d3.extent(data.loc, function(d) { return d.y; })).nice()
+            .domain(d3.extent(data, function(d) { return d[j][1]; })).nice()
             .range([ height, 0 ]);
 
-  //var g = main.append("svg:g");            
+  var g = main.append("svg:g");            
   g.selectAll("scatter-dots")
-      .data(data.loc)
+      .data(data)
       .enter().append("svg:circle")
-          .attr("cx", function (d,i) { return x2(d.x); } )
-          .attr("cy", function (d) { return y2(d.y); } )
-          .attr("r", 4);  
-var xa = d3.scale.linear()
+          .attr("cx", function (d,i) { return x2(d[j][0]); } )
+          .attr("cy", function (d) { return y2(d[j][1]); } )
+          .attr("r", 4);
+         
+         }
+          });  
+      //  });
+/*var xa = d3.scale.linear()
               .domain(d3.extent(data.data, function(d) { return d.x; })).nice()
               .range([ 0, width ]);
     
@@ -140,9 +151,9 @@ g.selectAll(".dot")
       .enter().append("svg:circle")
           .attr("cx", function (d,i) { return xa(d.x); } )
           .attr("cy", function (d) { return ya(d.y); } )
-          .attr("r", 8);  
+          .attr("r", 8);  */
      
-      }); 
+    //  }); 
 
 drawGridLines(width+400, height+200, svgContainer);
 });
