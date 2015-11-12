@@ -26,6 +26,9 @@ app.set('view engine', 'html');
 //app.use(express.bodyParser());
 http.listen(3000, function() {
   console.log('listening on *:3000');
+ // if(process.send){
+  //	process.send('online');
+ // }
 });
 //app.listen(3000);
 var C = xbee_api.constants;
@@ -74,6 +77,7 @@ var arr = [];
 var e =[];
 var x,y,z,w;
 var var1,var2,var3,var4,var5,var6,var7,var8,var9;
+var v1,v2,v3,v4,v5,v6,v7,v8,v9;
 XBeeAPI.on("frame_object", function(frame) {
   if (frame.type == 144){
     console.log("Beacon ID: " + frame.data[1] + ", RSSI: " + (frame.data[0]));
@@ -105,7 +109,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map1[9] = new Array(54,60,43,43);
        map1[10] = new Array(58,51,48,52);
        map1[11] = new Array(58,58,40,53);
-      // console.log(math.var(map1));
+      v1 =math.var(map1);
 
        //partition 2
       var map2 = new Array();
@@ -121,7 +125,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map2[9] = new Array(57,68,49,42);
        map2[10] = new Array(50,54,45,48);
        map2[11] = new Array(57,60,55,47);
-      // console.log(math.var(map2));
+      v2 = math.var(map2);
        //partition 3
              var map3 = new Array();
        map3[0] = new Array(56,62,63,54);
@@ -134,7 +138,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map3[7] = new Array(60,57,53,47);
        map3[8] = new Array(54,49,51,52);
        map3[9] = new Array(58,52,51,59);
-          //   console.log(math.var(map3));
+         v3 = math.var(map3);
 
       var map4 = new Array();
        map4[0] = new Array(50,47,57,48);
@@ -154,7 +158,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map4[14] = new Array(50,57,65,50);
        map4[15] = new Array(52,51,66,47);
        
-        // console.log(math.var(map4));
+        v4 = math.var(map4);
          var map5 = new Array();
        map5[0] = new Array(66,56,54,51);
        map5[1] = new Array(52,54,51,51);
@@ -171,7 +175,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map5[12] = new Array(54,51,50,63);
       
        
-       //  console.log(math.var(map5));
+       v5 = math.var(map5);
             var map6 = new Array();
        map6[0] = new Array(49,57,59,54);
        map6[1] = new Array(49,52,61,58);
@@ -187,7 +191,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map6[11] = new Array(52,55,60,51);
        
        
-      //   console.log(math.var(map6));
+      v6 = math.var(map6);
 
             var map7 = new Array();
        map7[0] = new Array(55,61,66,59);
@@ -202,7 +206,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map7[9] = new Array(55,62,57,50);
        map7[10] = new Array(55,53,50,52);
 
-       //  console.log(math.var(map7));
+       v7 = math.var(map7);
 
             var map8 = new Array();
        map8[0] = new Array(47,56,58,57);
@@ -221,7 +225,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map8[13] = new Array(49,43,53,52);
        map8[14] = new Array(51,49,57,57);
        
-       //  console.log(math.var(map8));
+       v8 = math.var(map8);
              var map9 = new Array();
        map9[0] = new Array(44,37,69,69);
        map9[1] = new Array(42,40,64,69);
@@ -240,7 +244,7 @@ XBeeAPI.on("frame_object", function(frame) {
        map9[14] = new Array(45,44,55,52);
        map9[15] = new Array(53,45,57,61);
        
-      //   console.log(math.var(map9));
+      v9 = math.var(map9);
       var good = false;
     if (typeof(map0[0][0])!='undefined' && typeof(map0[0][1])!='undefined' && typeof(map0[0][2])!='undefined' && typeof(map0[0][3])!='undefined' ) {
         good = true; 
@@ -312,9 +316,15 @@ vari.push(var9);
 map9.pop();
 
 //map9.splice(map9.indexof(map0),1);
-console.log(math.min(vari));
-
-if(math.min(vari) == var1){
+//console.log(math.min(vari));
+var array = [];
+array=[v1,v2,v3,v4,v5,v6,v7,v8,v9];
+var a = []
+a = [math.abs(vari[0]-v1),math.abs(vari[1]-v2),math.abs(vari[2]-v3),math.abs(vari[3]-v4),math.abs(vari[4]-v5),math.abs(vari[5]-v6),math.abs(vari[6]-v7),math.abs(vari[7]-v8),math.abs(vari[8]-v9)];
+var m = math.min(a);
+for(var i = 0; i<a.length;i++){
+ if (m == a[i]){
+if(i == 0){
 	s = [30,36];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -322,7 +332,7 @@ if(math.min(vari) == var1){
     }
 });
 }
-else if(math.min(vari) == var2){
+else if(i == 1){
 	s = [10,36];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -330,7 +340,7 @@ else if(math.min(vari) == var2){
     }
 });
 }
-else if(math.min(vari) == var3){
+else if(i == 2){
 	s = [30,28];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -338,7 +348,7 @@ else if(math.min(vari) == var3){
     }
 });
 }
-else if(math.min(vari) == var4){
+else if(math.min(vari) == i == 3){
 	s = [10,28];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -346,7 +356,7 @@ else if(math.min(vari) == var4){
     }
 });
 }
-else if(math.min(vari) == var5){
+else if(i == 4){
 	s = [30,20];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -354,7 +364,7 @@ else if(math.min(vari) == var5){
     }
 });
 }
-else if(math.min(vari) == var6){
+else if(i == 5){
 	s = [20,20];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -362,7 +372,7 @@ else if(math.min(vari) == var6){
     }
 });
 }
-else if(math.min(vari) == var7){
+else if(i == 6){
 	s = [30,12];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -370,7 +380,7 @@ else if(math.min(vari) == var7){
     }
 });
 }
-else if(math.min(vari) == var8){
+else if(i == 7){
 	s = [10,12];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
@@ -378,13 +388,15 @@ else if(math.min(vari) == var8){
     }
 });
 }
-else if(math.min(vari) == var9){
+else if(i == 8){
 	s = [20,4];
 	fs.writeFile("C:/Users/HP/Desktop/RSSI_INO/views/loc.tsv", s.join('\t'), function(err) {
     if(err) {
         return console.log(err);
     }
 });
+}
+}
 }
 }
     s=[[0,13],[13,13],[13,0]];

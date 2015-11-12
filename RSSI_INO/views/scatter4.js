@@ -15,13 +15,19 @@
             scatter: {
                 turboThreshold:5000,
                 
-                marker: {
-                    radius: 5,
+               // marker: {
+                  //  radius: 5,
                     states: {
                         hover: {
                             enabled: true,
-                            lineColor: 'rgba(223, 83, 83, .5)'
+                            lineColor: 'rgba(223, 83, 83, .5)',
+                        events: {
+                        mouseOver: function () {
+                            var chart = this.series.chart;
+                            chart.redraw();
                         }
+                    }
+                       // }
                     }
                 
                 },
@@ -91,7 +97,7 @@
 
         
 
-                    series: []
+                    series: [ ]
                     
                 };
                 create();
@@ -105,7 +111,8 @@
                  Janet,3,16,13,15
 
                  */
-               
+               var status = 0; // 0:start 1:fin
+                var timeout = 500;
                  function create() {
             if(chart) chart.destroy();
 
@@ -113,7 +120,7 @@
                     // Split the lines
                     var lines = data.split('\n');
 
-              
+                    status = 1;
                    $.each(lines, function(lineNo, line) {
                         
                         
@@ -121,17 +128,15 @@
                         // header line containes categories
                     
                         var series = {
-                                data:[[parseFloat(items[0]),parseFloat(items[1])]]
-                                
+                                data:[[parseFloat(items[0]),parseFloat(items[1])]],
+                                marker:{radius:10}
                                 
 
                               //  data: [document.getElementById('csv').innerHTML]
                               //data:lines
                               //data:csv
                             };
-
-                           // series.update({marker:{radius:8}}); 
-                          //series.data.push(parseFloat(x,y));
+                          
                        
                             options.series.push(series);
                        });
@@ -198,13 +203,21 @@
                         };
                          //series9.update({marker:{radius:5}});
                         options.series.push(series9);
-
-
                     var chart = new Highcharts.Chart(options);
-                    //chart.redraw();
-                   // chart.series.setData(data,true);
-                   
+                    $("#container").click(function(){
+                    chart.redraw();
+                });
                 
             });
+                var timer = setTimeout(function(){
+                clearTimeout(timer);
+                if(!status){
+
+                throw new Error('timeout');
+                }
+                }, timeout);
             }
+
         });
+
+     /**/
