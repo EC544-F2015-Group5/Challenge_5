@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Localize Arduino</title>
+    <script type="text/javascript" src="js/paper-full.js"></script>
+    <script type="text/paperscript" canvas="canvas">
+        project.importSVG(document.getElementById('svg'));
+        // var x = 533.4;
+        // var y = 290;
+        // var myCircle = new Path.Circle(new Point(x, y), 10);
+        // myCircle.fillColor = 'red';
+
+        // <text font-size="20" font-family="times" x="533.4" y="140" >1</text>
+        // <text font-size="20" font-family="times" x="810.6" y="115" >2</text>
+        // <text font-size="20" font-family="times" x="533.4" y="290" >3</text>
+        // <text font-size="20" font-family="times" x="810.6" y="285" >4</text>
+
+        // <text font-size="20" font-family="times" x="533.4" y="470" >5</text>
+        // <text font-size="20" font-family="times" x="810.6" y="455" >6</text>
+
+        // <text font-size="20" font-family="times" x="533.4" y="615" >7</text>
+        // <text font-size="20" font-family="times" x="810.6" y="610" >8</text>
+
+        // <text font-size="20" font-family="times" x="672" y="770" >9</text>
+    </script>
+    <style type="text/css">
+div.Total {
+    position: absolute;
+    top: 10%;
+    left: 17%;
+    width: 90%;
+    height: 80%;
+}
+div.Point1 {
+  position:absolute;
+  margin-top: 10%;
+  margin-left: 30%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+div.Point2 {
+  margin-left: 35%;
+  margin-top:20%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point3 {
+  margin-left: 30%;
+  margin-top:10%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point4 {
+  margin-left: 30%;
+  margin-top:15%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point5 {
+  margin-left: 30%;
+  margin-top:7%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    /*div.Point6 {
+  margin-left: 40%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point7 {
+  margin-left: 20%;
+  margin-top: 10%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point8 {
+  margin-left: 40%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}
+    div.Point9 {
+  margin-left: 32%;
+  margin-top: 10%;
+  width:20px;
+  height:20px;
+  background: red;
+  -moz-border-radius:50px;
+  -webkit-border-radius:50px;
+  border-radius:50px;
+}*/
+</style>
+</head>
+<body>
+     <h1 style="text-align: center">Localization Arduino</h1>
+     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0" style="visibility:hidden" id="svg">
+        <!-- <path id="lineAB" d="M 350 100 l 100 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineBC" d="M 450 100 l 0 -100" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineCD" d="M 450 5 l 450 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineDE" d="M 900 5 l 0 50" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineEF" d="M 900 55 l 50 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineFG" d="M 950 55 l 0 600" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineGH" d="M 950 650 l -50 0" stroke="black" stroke-width="3px" fill="none" />
+
+        <path id="lineHI" d="M 900 650 l  50" stroke="black" stroke-width="3px" fill="none" />
+
+        <path id="lineIJ" d="M 850 950 l 100 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineJK" d="M 850 950 l 100 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineKL" d="M 850 950 l 100 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineLM" d="M 850 950 l 100 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineMN" d="M 850 950 l 100 0" stroke="black" stroke-width="3px" fill="none" /> -->
+
+        <!-- Big version graph -->
+        <!-- <path id="lineAB" d="M 350 200 l 125 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineBC" d="M 475 200 l 0 -110" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineCD" d="M 475 90 l 657 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineDE" d="M 1132 90 l 0 128" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineEF" d="M 1132 218 l 40 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineFG" d="M 1172 218 l 0 1000" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineGH" d="M 1172 1218 l -40 0" stroke="black" stroke-width="3px" fill="none" />
+
+        <path id="lineHI" d="M 1132 1218 l 0 128" stroke="black" stroke-width="3px" fill="none" />
+
+        <path id="lineIJ" d="M 1132 1346 l -40 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineJK" d="M 1092 1346 l 0 128" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineKL" d="M 1092 1474 l -744 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineLM" d="M 348 1474 l 0 -345" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineMN" d="M 348 1129 l -90 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineNO" d="M 258 1129 l 0 -793" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineOP" d="M 258 336 l 92 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="linePQ" d="M 350 336 l 0 -136" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineQA" d="M 350 400 l 0 0" stroke="black" stroke-width="3px" fill="none" /> -->
+
+        <!-- Small version graph -->
+        <path id="lineAB" d="M 450 80 l 75 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineBC" d="M 525 80 l 0 -66" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineCD" d="M 525 14 l 400.2 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineDE" d="M 925.2 14 l 0 76.8" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineEF" d="M 925.2 90.8 l 24 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineFG" d="M 949.2 90.8 l 0 600" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineGH" d="M 949.2 690.8 l -24 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineHI" d="M 925.2 690.8 l 0 76.8" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineIJ" d="M 925.2 767.6 l -24 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineJK" d="M 901.2 767.6 l 0 76.8" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineKL" d="M 901.2 844.4 l -446.4 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineLM" d="M 454.8 844.4 l 0 -207" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineMN" d="M 454.8 637.4 l -60 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineNO" d="M 394.8 637.4 l 0 -475.8" stroke="black" stroke-width="3px" fill="none" />
+        <path id="lineOP" d="M 394.8 161.6 l 55.2 0" stroke="black" stroke-width="3px" fill="none" />
+        <path id="linePA" d="M 450 161.6 l 0 -81.6" stroke="black" stroke-width="3px" fill="none" />
+        <!-- Partation -->
+
+        <!-- <path id="lineab" d="M 672 14 l 0 667.8" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linec" d="M 394.8 194 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="lined" d="M 394.8 356.6 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linee" d="M 394.8 519.2 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linef" d="M 454.8 681.8 l 217.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+
+        <path id="lineg" d="M 949.2 180 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="lineh" d="M 949.2 342.6 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linei" d="M 949.2 505.2 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linej" d="M 949.2 667.8 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" /> -->
+
+        <!-- <path id="lineab" d="M 672 14 l 0 667.8" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" /> -->
+        <path id="linec" d="M 394.8 194 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="lined" d="M 394.8 356.6 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linee" d="M 394.8 519.2 l 277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linef" d="M 454.8 681.8 l 217.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+
+        <path id="lineg" d="M 949.2 194 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="lineh" d="M 949.2 356.6 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linei" d="M 949.2 519.2 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <path id="linej" d="M 949.2 681.8 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
+        <g fill="blue" stroke="none" text-anchor="middle">
+            <text font-size="20" font-family="times" x="633.4" y="124" >1</text>
+            <!-- <text font-size="20" font-family="times" x="810.6" y="95" >2</text> -->
+            <text font-size="20" font-family="times" x="633.4" y="277" >2</text>
+            <!-- <text font-size="20" font-family="times" x="810.6" y="270" >4</text> -->
+            <text font-size="20" font-family="times" x="633.4" y="458" >3</text>
+            <!-- <text font-size="20" font-family="times" x="810.6" y="440" >6</text> -->
+            <text font-size="20" font-family="times" x="633.4" y="600" >4</text>
+            <!-- <text font-size="20" font-family="times" x="810.6" y="590" >8</text> -->
+            <text font-size="20" font-family="times" x="672" y="800" >5</text>
+        </g>
+        <!-- Mark beacons' points -->
+        <g stroke="blue" stroke-width="3" fill="blue">
+            <circle id="Beacon1" cx="525" cy="80" r="3" />
+            <circle id="Beacon2" cx="935" cy="90.8" r="3" />
+            <circle id="Beacon3" cx="480" cy="844.4" r="3" />
+            <circle id="Beacon4" cx="901.2" cy="780" r="3" />
+        </g>
+        <!-- Label the Beacons -->
+        <g fill="blue" stroke="none" text-anchor="middle">
+            <text font-size="20" font-family="times" x="525" y="75" dx="-50" dy="-5">BeaconA</text>
+            <text font-size="20" font-family="times" x="935" y="82" dx="40">BeaconB</text>
+            <text font-size="20" font-family="times" x="480" y="844.4" dy="30">BeaconC</text>
+            <text font-size="20" font-family="times" x="901.2" y="790" dx="50" >BeaconD</text>
+        </g>
+        <!-- Label -->
+        <g stroke="blue" stroke-width="3" fill="blue">
+            <circle cx="125" cy="270" r="3" />
+        </g>
+        <g fill="blue" stroke="none" text-anchor="middle">
+            <text font-size="20" font-family="times" x="225" y="275" >Beacon's location</text>
+        </g>
+
+        <g stroke="red" stroke-width="3" fill="red">
+            <circle cx="125" cy="320" r="10" />
+        </g>
+        <g fill="red" stroke="none" text-anchor="middle">
+            <text font-size="20" font-family="times" x="225" y="325" >Arduino's location</text>
+        </g>
+
+
+
+
+    </svg>
+    <canvas id="canvas" width="1350" height="1000"></canvas>
+    <div class="Total">
+     <div id="1" class="Point1"></div>
+     <div id="2" class="Point2"></div>
+     <div id="3" class="Point3"></div>
+     <div id="4" class="Point4"></div>
+     <div id="5" class="Point5"></div>
+     <!-- <div id="6" class="Point6"></div>
+     <div id="7" class="Point7"></div>
+     <div id="8" class="Point8"></div>
+     <div id="9" class="Point9"></div> -->
+    </div>
+</body>
+</html>
