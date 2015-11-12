@@ -30,7 +30,7 @@ This example is for Series 2 XBee
 */
 
 // Should be a unique ID between 0 and 255.
-uint8_t BEACON_ID = 2;
+uint8_t BEACON_ID = 1;
 
 
 XBee xbee = XBee();
@@ -71,7 +71,7 @@ int sendATCommand(AtCommandRequest atRequest) {
       xbee.getResponse().getAtCommandResponse(atResponse);
 
       if (atResponse.isOk()) {
-        Serial.print("Command [");
+       /* Serial.print("Command [");
         Serial.print(atResponse.getCommand()[0]);
         Serial.print(atResponse.getCommand()[1]);
         Serial.println("] was successful!");
@@ -80,16 +80,16 @@ int sendATCommand(AtCommandRequest atRequest) {
           Serial.print("Command value length is ");
           Serial.println(atResponse.getValueLength(), DEC);
 
-          Serial.print("Command value: ");
+          Serial.print("Command value: ");*/
           
           for (int i = 0; i < atResponse.getValueLength(); i++) {
             value = atResponse.getValue()[i];
-            Serial.print(atResponse.getValue()[i]);
-            Serial.print(" ");
+           // Serial.print(atResponse.getValue()[i]);
+           // Serial.print(" ");
           }
 
-          Serial.println("");
-        }
+         // Serial.println("");
+        //}
       } 
       else {
         Serial.print("Command return error code: ");
@@ -99,7 +99,8 @@ int sendATCommand(AtCommandRequest atRequest) {
       Serial.print("Expected AT response but got ");
       Serial.print(xbee.getResponse().getApiId(), HEX);
     }   
-  } else {
+}
+else {
     // at command failed
     if (xbee.getResponse().isError()) {
       Serial.print("Error reading packet.  Error code: ");  
@@ -158,22 +159,22 @@ void processResponse(){
         // now fill our zb rx class
         xbee.getResponse().getZBRxResponse(rx);
       
-        Serial.println("Got an rx packet!");
+        //Serial.println("Got an rx packet!");
             
         if (rx.getOption() == ZB_PACKET_ACKNOWLEDGED) {
             // the sender got an ACK
-            Serial.println("packet acknowledged");
+           // Serial.println("packet acknowledged");
         } else {
-          Serial.println("packet not acknowledged");
+          //Serial.println("packet not acknowledged");
         }
         
-        Serial.print("checksum is ");
-        Serial.println(rx.getChecksum(), HEX);
+        //Serial.print("checksum is ");
+        //Serial.println(rx.getChecksum(), HEX);
 
-        Serial.print("packet length is ");
-        Serial.println(rx.getPacketLength(), DEC);
+       // Serial.print("packet length is ");
+       // Serial.println(rx.getPacketLength(), DEC);
         
-         for (int i = 0; i < rx.getDataLength(); i++) {
+        /* for (int i = 0; i < rx.getDataLength(); i++) {
           Serial.print("payload [");
           Serial.print(i, DEC);
           Serial.print("] is ");
@@ -185,23 +186,27 @@ void processResponse(){
         Serial.print(i, DEC);
         Serial.print("] is ");
         Serial.println(xbee.getResponse().getFrameData()[i], HEX);
-      }
+      }*/
 
             
       XBeeAddress64 replyAddress = rx.getRemoteAddress64();
       int rssi = sendATCommand(dbCommand);
       sendRSSIValue(replyAddress, rssi);
-      Serial.println("");
+      //Serial.println("");
         
-      }
-    } else if (xbee.getResponse().isError()) {
+     // }
+   /* } else if (xbee.getResponse().isError()) {
       Serial.print("error code:");
       Serial.println(xbee.getResponse().getErrorCode());
-    }
+    }*/
+//}
+      }
+  }
 }
-
 // continuously reads packets, looking for ZB Receive or Modem Status
 void loop() {
     xbee.readPacket();
     processResponse();
+        
+    
 }
