@@ -324,33 +324,33 @@ a = [math.abs(vari[0]-v1),math.abs(vari[1]-v2),math.abs(vari[2]-v3),math.abs(var
 var m = math.min(a);
 for(var i = 0; i<a.length;i++){
  if (m == a[i]){
-// if(i == 0){
-// 	io.emit('action',1 );
-// }
-// else if(i == 1){
-// io.emit('action',2 );
-// }
-// else if(i == 2){
-// io.emit('action',3);
-// }
-// else if(i == 3){
-// io.emit('action',4 );
-// }
-// else if(i == 4){
-// io.emit('action',5 );
-// }
-// else if(i == 5){
-// io.emit('action',6);
-// }
-// else if(i == 6){
-// io.emit('action',7 );
-// }
-// else if(i == 7){
-// io.emit('action',8 );
-// }
-// else if(i == 8){
-// io.emit('action',9 );
-// }
+if(i == 0){
+	io.emit('action',1 );
+}
+else if(i == 1){
+io.emit('action',2 );
+}
+else if(i == 2){
+io.emit('action',3);
+}
+else if(i == 3){
+io.emit('action',4 );
+}
+else if(i == 4){
+io.emit('action',5 );
+}
+else if(i == 5){
+io.emit('action',6);
+}
+else if(i == 6){
+io.emit('action',7 );
+}
+else if(i == 7){
+io.emit('action',8 );
+}
+else if(i == 8){
+io.emit('action',9 );
+}
 }
 }
        }

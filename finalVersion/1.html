@@ -154,15 +154,15 @@
         <path id="linei" d="M 949.2 505.2 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
         <path id="linej" d="M 949.2 667.8 l -277.2 0" stroke="black" stroke-width="1px" stroke-dasharray="5,5" fill="none" />
         <g id="a" fill="blue" stroke="none" text-anchor="middle">
-            <text font-size="20" font-family="times" x="533.4" y="124" >9</text>
-            <text font-size="20" font-family="times" x="810.6" y="95" >9</text>
-            <text font-size="20" font-family="times" x="533.4" y="277" >7</text>
-            <text font-size="20" font-family="times" x="810.6" y="270" >6</text>
+            <text font-size="20" font-family="times" x="533.4" y="124" >1</text>
+            <text font-size="20" font-family="times" x="810.6" y="95" >2</text>
+            <text font-size="20" font-family="times" x="533.4" y="277" >3</text>
+            <text font-size="20" font-family="times" x="810.6" y="270" >4</text>
             <text font-size="20" font-family="times" x="533.4" y="458" >5</text>
-            <text font-size="20" font-family="times" x="810.6" y="440" >4</text>
-            <text font-size="20" font-family="times" x="533.4" y="600" >3</text>
-            <text font-size="20" font-family="times" x="810.6" y="590" >2</text>
-            <text font-size="20" font-family="times" x="672" y="800" >1</text>
+            <text font-size="20" font-family="times" x="810.6" y="440" >6</text>
+            <text font-size="20" font-family="times" x="533.4" y="600" >7</text>
+            <text font-size="20" font-family="times" x="810.6" y="590" >8</text>
+            <text font-size="20" font-family="times" x="672" y="800" >9</text>
         </g>
         <!-- Mark beacons' points -->
         <g stroke="blue" stroke-width="3" fill="blue">
@@ -216,7 +216,6 @@
 
   var socket = io();
   socket.on('action', function(data){
-  $('#messages').append($('<li>').text(data));
     var div = document.getElementById("1");
     var div1 = document.getElementById("2");
     var div2 = document.getElementById("3");
